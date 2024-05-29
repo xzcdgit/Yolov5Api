@@ -55,16 +55,18 @@ class YoloOpt:
 
 
 class DetectAPI:
-    def __init__(self, weights, imgsz=640):
-        self.opt = YoloOpt(weights=weights, imgsz=imgsz)
+    def __init__(self, weights, imgsz=640, device="cpu"):
+        self.opt = YoloOpt(weights=weights, imgsz=imgsz, device=device)
         weights = self.opt.weights
         imgsz = self.opt.imgsz
 
         # Initialize 初始化
         # 获取设备 CPU/CUDA
         self.device = select_device(self.opt.device)
+
         # 不使用半精度
-        self.half = self.device.type != 'cpu'  # # FP16 supported on limited backends with CUDA
+        #self.half = self.device.type != 'cpu'  # # FP16 supported on limited backends with CUDA
+        self.half = False
 
         # Load model 加载模型
         self.model = DetectMultiBackend(weights, self.device, dnn=False)

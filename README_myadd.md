@@ -7,3 +7,6 @@
 ## 文件增加
 * `detect_api.py` 接口文件
 * `CallApi.py` 调用实例
+
+## 注
+detect_api.py文件中的`non_max_suppression(pred, self.opt.conf_thres, self.opt.iou_thres, self.opt.classes, self.opt.agnostic_nms, max_det=20)`的max_det决定了最多绘制多少个目标框
